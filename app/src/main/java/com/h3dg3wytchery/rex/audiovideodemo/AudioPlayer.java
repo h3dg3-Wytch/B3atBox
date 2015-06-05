@@ -17,7 +17,27 @@ public class AudioPlayer {
         }
     }
 
+    public void pause(){
+        if(mPlayer.isPlaying()){
+            mPlayer.pause();
+        } else {
+            mPlayer.start();
+        }
+
+    }
+
     public void play(Context context){
-        mPlayer = new MediaPlayer.create(context, R.)
+
+        stop();
+        mPlayer = new MediaPlayer().create(context, R.raw.beat1);
+
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mPlayer.stop();
+            }
+        });
+
+        mPlayer.start();
     }
 }
